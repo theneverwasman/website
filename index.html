@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>theneverwasman</title>
+    <!-- Sigil-Inspired Font: "Cinzel" (Bold, Ancient, Mystical) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #000;
+            font-family: 'Georgia', serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            gap: 40px;
+        }
+
+        /* Title - Fused Colors, 2 Sizes Bigger (6rem) */
+        h1 {
+            font-size: 6rem;
+            letter-spacing: 3px;
+            animation: pulse 3s infinite;
+            display: inline-block;
+            text-align: center;
+        }
+
+        @keyframes pulse {
+            0%, 100% { text-shadow: 0 0 15px rgba(255, 36, 0, 0.5); }
+            50% { text-shadow: 0 0 30px rgba(255, 36, 0, 0.8); }
+        }
+
+        .white { color: #fff; }
+        .scarlet { color: #ff2400; text-shadow: 0 0 15px rgba(255, 36, 0, 0.5); }
+
+        /* Links - Scarlet Glow, No Background, Bold Cinzel */
+        .portal-link {
+            color: #fff;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 2.2rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-align: center;
+            line-height: 1.6;
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .portal-link:hover {
+            transform: scale(1.05);
+        }
+
+        .link-flash { 
+            color: #ff2400;
+            animation: flash 1.5s infinite;
+            display: inline;
+            text-shadow: 0 0 15px #ff2400, 0 0 30px #ff4500;
+        }
+
+        @keyframes flash {
+            0%, 100% { color: #ff2400; text-shadow: 0 0 15px #ff2400, 0 0 30px #ff4500; }
+            50% { color: #fff; text-shadow: 0 0 20px #ff2400, 0 0 40px #ff4500; }
+        }
+
+        /* Hidden Pages */
+        .page {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: #0a0a0a;
+            color: #ddd;
+            padding: 40px;
+            overflow-y: auto;
+            z-index: 100;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page.active { display: flex; }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2rem;
+            color: #ff2400;
+            cursor: pointer;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            letter-spacing: 1.5px;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+        }
+
+        .coming-soon {
+            font-size: 1.5rem;
+            color: #aaa;
+            font-style: italic;
+        }
+
+        .back-home {
+            color: #aaa;
+            font-style: italic;
+            margin-top: 40px;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        /* Flash for page titles */
+        .title-flash {
+            color: #ff2400;
+            animation: flash 1.5s infinite;
+            display: inline;
+            text-shadow: 0 0 15px #ff2400, 0 0 30px #ff4500;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MAIN PAGE: Title (2 Sizes Bigger) + Two Glow Links -->
+    <h1>
+        <span class="white">the</span><span class="scarlet">neverwas</span><span class="white">man</span>
+    </h1>
+
+    <!-- Link 1: Scrolls -->
+    <div class="portal-link" onclick="openScrolls()">
+        <span class="link-flash">scrolls</span> 
+        <span class="link-white">of the</span> 
+        <span class="link-flash">neverwas</span> 
+        <span class="link-white">man</span>
+    </div>
+
+    <!-- Link 2: Echoes -->
+    <div class="portal-link" onclick="openEchoes()">
+        <span class="link-flash">echoes</span> 
+        <span class="link-white">of the</span> 
+        <span class="link-flash">neverwas</span> 
+        <span class="link-white">man</span>
+    </div>
+
+    <!-- SCROLLS PAGE -->
+    <div id="scrolls-page" class="page">
+        <span class="close-btn" onclick="closePage('scrolls-page')">&times;</span>
+        
+        <h2 class="page-title">
+            <span class="title-flash">scrolls</span> 
+            <span class="link-white">of the</span> 
+            <span class="title-flash">neverwas</span> 
+            <span class="link-white">man</span>
+        </h2>
+
+        <p class="coming-soon">coming soon...</p>
+        <p class="back-home" onclick="closePage('scrolls-page')">← return to void</p>
+    </div>
+
+    <!-- ECHOES PAGE -->
+    <div id="echoes-page" class="page">
+        <span class="close-btn" onclick="closePage('echoes-page')">&times;</span>
+        
+        <h2 class="page-title">
+            <span class="title-flash">echoes</span> 
+            <span class="link-white">of the</span> 
+            <span class="title-flash">neverwas</span> 
+            <span class="link-white">man</span>
+        </h2>
+
+        <p class="coming-soon">coming soon...</p>
+        <p class="back-home" onclick="closePage('echoes-page')">← return to void</p>
+    </div>
+
+    <script>
+        function openScrolls() {
+            document.getElementById('scrolls-page').classList.add('active');
+        }
+        function openEchoes() {
+            document.getElementById('echoes-page').classList.add('active');
+        }
+        function closePage(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+    </script>
+
+</body>
+</html>
