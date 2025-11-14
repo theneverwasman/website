@@ -1,29 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>theneverwasman.RED</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>theneverwasman</title>
+  <link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       height: 100vh;
       background: #000;
       color: #fff;
-      font-family: 'Courier New', monospace;
+      font-family: 'Reenie Beanie', cursive;
       display: flex;
       justify-content: center;
       align-items: center;
       overflow: hidden;
     }
-    .container {
-      text-align: center;
-    }
+    .page { display: none; text-align: center; padding: 0.3rem; }
+    .page.active { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; }
     h1 {
-      font-size: 4rem;
-      margin: 0 0 2rem;
-      text-shadow: 0 0 20px #0f0;
+      font-size: 3.3rem;
+      margin: 0 0 0.8rem;
+      text-shadow: 0 0 20px crimson;
       animation: glitch 2s infinite;
+      color: white;
+      letter-spacing: -0.07em;
+      word-spacing: -0.35em;
     }
     @keyframes glitch {
       0%, 100% { transform: translate(0); }
@@ -35,17 +49,19 @@
     .links {
       display: flex;
       justify-content: center;
-      gap: 3rem;
+      gap: 1rem;
     }
     .link {
-      color: #0f0;
-      text-decoration: none;
-      font-size: 1.5rem;
+      color: white !important;
+      text-decoration: none !important;
+      font-size: 1.9rem;
       position: relative;
       transition: all 0.3s;
+      letter-spacing: -0.09em;
+      word-spacing: -0.45em;
     }
     .link:hover {
-      text-shadow: 0 0 15px #0f0;
+      text-shadow: 0 0 15px crimson;
       transform: scale(1.1);
     }
     .link::after {
@@ -55,21 +71,90 @@
       height: 2px;
       bottom: -5px;
       left: 0;
-      background: #0f0;
+      background: crimson;
       transition: width 0.3s;
     }
     .link:hover::after {
       width: 100%;
     }
+    .soon {
+      font-size: 2.9rem;
+      color: white;
+      text-shadow: 0 0 15px crimson;
+      margin: 0.3rem 0 1.2rem;
+      letter-spacing: -0.08em;
+      word-spacing: -0.4em;
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+    .nav a {
+      color: white !important;
+      text-decoration: none !important;
+      font-size: 1.3rem;
+      letter-spacing: -0.08em;
+      word-spacing: -0.35em;
+    }
+    .nav a:hover {
+      text-shadow: 0 0 10px crimson;
+    }
+    /* Force even messier handwriting & tighter squeeze on EVERYTHING */
+    * {
+      font-family: 'Reenie Beanie', cursive !important;
+      letter-spacing: -0.07em !important;
+      word-spacing: -0.3em !important;
+    }
+    a:link, a:visited, a:hover, a:active {
+      color: white !important;
+      text-decoration: none !important;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
+
+  <!-- Home Page -->
+  <div id="home" class="page active">
     <h1>theneverwasman</h1>
     <div class="links">
-      <a href="#" class="link">echoes</a>
-      <a href="#" class="link">scrolls</a>
+      <a href="#" onclick="show('echoes')">echoes</a>
+      <a href="#" onclick="show('scrolls')">scrolls</a>
     </div>
   </div>
+
+  <!-- Echoes Page -->
+  <div id="echoes" class="page">
+    <h1>theneverwasman</h1>
+    <div class="soon">coming soon</div>
+    <div class="nav">
+      <a href="#" onclick="show('home')">never mind</a>
+      <a href="#" onclick="show('scrolls')">scrolls</a>
+    </div>
+  </div>
+
+  <!-- Scrolls Page -->
+  <div id="scrolls" class="page">
+    <h1>theneverwasman</h1>
+    <div class="soon">coming soon</div>
+    <div class="nav">
+      <a href="#" onclick="show('home')">never mind</a>
+      <a href="#" onclick="show('echoes')">echoes</a>
+    </div>
+  </div>
+
+  <script>
+    function show(id) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
+
 </body>
+</html>
+    
+  </body>
+  
 </html>
